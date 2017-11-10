@@ -1,6 +1,7 @@
 package ae.milch.weatherapp.data
 
 import com.google.gson.Gson
+import java.net.URL
 
 class ForecastRequest(val zipCode: String) {
 
@@ -11,9 +12,10 @@ class ForecastRequest(val zipCode: String) {
         private val COMPLETE_URL = "$URL&APPID=$APP_ID&q="
     }
 
-    fun execute(): ForecastRequest {
+    fun execute(): ForecastResult {
         val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
+
 
